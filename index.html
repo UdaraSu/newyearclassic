@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <title>🎁 Awurudu Wish</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Sinhala', sans-serif;
+      background: linear-gradient(to bottom right, #ffe6ff, #e6f3ff);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .giftbox-page {
+      background-color: #ffccf9;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 5vw;
+      text-align: center;
+    }
+
+    .gift-box {
+      width: 35vw;
+      max-width: 200px;
+      aspect-ratio: 1 / 1;
+      background-image: url('https://parspng.com/wp-content/uploads/2022/02/giftboxpng.parspng.com-8.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      animation: bounce 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3vh); }
+    }
+
+    .click-text {
+      margin-top: 4vh;
+      font-size: 1.5em;
+      color: #6a1b9a;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .explosion-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-image: url('https://www.icegif.com/wp-content/uploads/2023/11/icegif-142.gif');
+      background-size: cover;
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .explosion-animate {
+      animation: fadeBlast 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeBlast {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    .wish {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 5vw;
+      margin: 30px;
+      background: linear-gradient(to bottom right, #f8bbd0, #ffccbc);
+      border: 5px solid #ff80ab;
+      border-radius: 20px;
+      box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+      max-width: 90vw;
+      animation: fadeZoomIn 1.5s ease forwards;
+      z-index: 2;
+    }
+
+    @keyframes fadeZoomIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .wish img {
+      width: 30vw;
+      max-width: 150px;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      border: 5px solid #fff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .wish h1 {
+      font-size: 2.2em;
+      color: #e91e63;
+      margin-bottom: 10px;
+    }
+
+    .wish p {
+      font-size: 1.2em;
+      color: #9c27b0;
+      margin: 10px 0;
+      line-height: 1.2;
+    }
+
+    .heart {
+      font-size: 3em;
+      animation: heartbeat 1.5s infinite;
+      color: red;
+      margin: 20px 0;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .sparkles {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2em;
+      color: #ff4081;
+      animation: sparkle 1s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    audio {
+      display: none;
+    }
+
+    /* EXTRA Responsive Tuning */
+    @media (max-width: 480px) {
+      .click-text {
+        font-size: 1.2em;
+      }
+
+      .wish h1 {
+        font-size: 1.5em;
+      }
+
+      .wish p {
+        font-size: 1em;
+      }
+
+      .gift-box {
+        width: 50vw;
+      }
+
+      .wish img {
+        width: 100px;
+      }
+
+      .heart {
+        font-size: 2em;
+      }
+
+      .sparkles {
+        font-size: 1.3em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="giftbox-page" id="main">
+  <div class="gift-box" onclick="openGift()" id="gift"></div>
+  <p class="click-text" id="clickText">🎁 Click the Gift Box!</p>
+</div>
+
+<div class="explosion-bg" id="explosionBg"></div>
+
+<div class="wish" id="wish">
+  <img src="https://cdn.dribbble.com/userupload/35938403/file/original-7a0133ed849c5bc2be989b49a5012dc2.gif" alt="Your Image">
+  <h1>Happy New Year !</h1>
+
+<p>සාමයේ හඩ පැතිරෙන..</p>
+<p>සතුටු සිනා ඉතිරෙන..</p>
+<p>මනුසත් කම් රජ වන..</p>
+<p>සුභම සුභ අලුත් අවුරුද්දක් වේවා !</p>
+<br>
+
+  <p>Wishing you and your beloved family a joyful and prosperous Sinhala and Tamil New Year!May this Avurudu bring happiness, good health, peace, and success to your home. Let's welcome the new year with love, laughter, and unity.</p>
+
+  <div class="heart">❤️</div>
+  <p>– From Udara</p>
+  <div class="sparkles"></div>
+</div>
+
+<audio id="bg-music" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-sunn.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  function openGift() {
+    document.getElementById('gift').style.display = 'none';
+    document.getElementById('clickText').style.display = 'none';
+
+    const explosion = document.getElementById('explosionBg');
+    explosion.style.display = 'block';
+    explosion.classList.add('explosion-animate');
+
+    setTimeout(() => {
+      explosion.style.display = 'none';
+      document.getElementById('main').style.display = 'none';
+      const wish = document.getElementById('wish');
+      wish.style.display = 'flex';
+      document.getElementById('bg-music').play();
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
